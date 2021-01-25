@@ -45,7 +45,15 @@
    *
    * See the included examples for guidance
    */
-  #include "../../../_Statusscreen.h"
+  #ifdef HFU_BOT_NUMMER
+    #if HFU_BOT_NUMMER == 1
+  		#include "../../../_StatusscreenBot1.h"
+  	#elif HFU_BOT_NUMMER == 2
+			#include "../../../_StatusscreenBot2.h"
+ 		#elif HFU_BOT_NUMMER == 3
+ 			#include "../../../_StatusscreenBot3.h"
+ 		#endif
+  #endif
 
   #ifdef STATUS_SCREENWIDTH
     #error "Your custom _Statusscreen.h needs to be converted for Marlin 2.0."

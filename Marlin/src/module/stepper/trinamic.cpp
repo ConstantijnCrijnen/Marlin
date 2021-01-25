@@ -536,7 +536,8 @@ enum StealthIndex : uint8_t { STEALTH_AXIS_XY, STEALTH_AXIS_Z, STEALTH_AXIS_E };
     st.stored.stealthChop_enabled = stealth;
 
     TMC2208_n::CHOPCONF_t chopconf{0};
-    chopconf.tbl = 0b01; // blank_time = 24
+    //chopconf.tbl = 0b01; // blank_time = 24
+    chopconf.tbl = 0b11; // blank_time = 40 -> Bearbeitet von Constantijn Crijnen
     chopconf.toff = chop_init.toff;
     chopconf.intpol = interpolate;
     chopconf.hend = chop_init.hend + 3;

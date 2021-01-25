@@ -37,7 +37,18 @@
     const unsigned short duration;
   } boot_frame_t;
 
-  #include "../../../_Bootscreen.h"
+  #ifndef HFU_BOT_NUMMER
+  	#include "../../../_Bootscreen.h"
+  #endif
+  #ifdef HFU_BOT_NUMMER
+   	#if HFU_BOT_NUMMER == 1
+  		#include "../../../_BootscreenBot1.h"
+    #elif HFU_BOT_NUMMER == 2
+  		#include "../../../_BootscreenBot2.h"
+    #elif HFU_BOT_NUMMER == 3
+     	 #include "../../../_BootscreenBot3.h"
+  	#endif
+  #endif
 
   #ifndef CUSTOM_BOOTSCREEN_BMPWIDTH
     #define CUSTOM_BOOTSCREEN_BMPWIDTH 128
