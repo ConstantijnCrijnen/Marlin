@@ -140,12 +140,14 @@
 #ifdef HFU_BOT_NUMMER
   #if HFU_BOT_NUMMER == 1
     #define CUSTOM_MACHINE_NAME "HFU Bot 1"
+    #define MACHINE_UUID "d010f173-d62d-4f4e-b859-8dbd94009126"
   #elif HFU_BOT_NUMMER == 2
     #define CUSTOM_MACHINE_NAME "HFU Bot 2"
+    #define MACHINE_UUID "65a72ff1-5491-46f1-858c-00e0526297ee"
   #elif HFU_BOT_NUMMER == 3
     #define CUSTOM_MACHINE_NAME "HFU Bot 3"
+    #define MACHINE_UUID "6f5d9bea-76e6-43a8-bdc6-fe1ce8eff321"
   #endif
-  #include "Configuration_Secure.h"
 #endif
 
 // Printer's unique ID, used by some programs to differentiate between machines.
