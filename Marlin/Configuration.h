@@ -37,6 +37,8 @@
  */
 #define CONFIGURATION_H_VERSION 020008
 
+#define HFU_BOT_NUMMER 1 // 1,2,3
+
 //===========================================================================
 //============================= Getting Started =============================
 //===========================================================================
@@ -68,7 +70,6 @@
 //
 
 // @section info
-#define HFU_BOT_NUMMER 1 // 1,2,3
 
 // Author info of this build printed to the host during boot and M115
 #define STRING_CONFIG_H_AUTHOR "(Constantijn Crijnen, Jan 2021)" // Who made the changes.
