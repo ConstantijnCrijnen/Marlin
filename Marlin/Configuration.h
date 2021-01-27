@@ -145,6 +145,7 @@
   #elif HFU_BOT_NUMMER == 3
     #define CUSTOM_MACHINE_NAME "HFU Bot 3"
   #endif
+  #include "Configuration_Secure.h"
 #endif
 
 // Printer's unique ID, used by some programs to differentiate between machines.
