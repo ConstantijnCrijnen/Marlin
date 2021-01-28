@@ -1530,8 +1530,8 @@
 // Specify additional languages for the UI. Default specified by LCD_LANGUAGE.	
 //	
 #if EITHER(DOGLCD, TOUCH_UI_FTDI_EVE)	
-  #define LCD_LANGUAGE_2 de	
-  #define LCD_LANGUAGE_3 zh_CN	
+  //#define LCD_LANGUAGE_2 de	
+  //#define LCD_LANGUAGE_3 zh_CN	
   //#define LCD_LANGUAGE_4 zh_TW	
   //#define LCD_LANGUAGE_5 it	
 #endif	
