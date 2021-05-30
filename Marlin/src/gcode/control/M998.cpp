@@ -138,7 +138,7 @@ void GcodeSuite::M998() {
 
   /* definitions */
   int window = 16;
-  double maxtime = 200*1000; //180s sollte eigentlich reichen...
+  double maxtime = 200*1000; //maximum dwell time [ms]
   float regression_max = 0.05; //[um/s]
 
   int i;
@@ -152,9 +152,12 @@ void GcodeSuite::M998() {
   int triggercount = 0, counter = 0;
   ui.defer_status_screen(true);
   ui.lcd_status_update_delay = 232;
+
+  /* find start z position */
   const float start_z = probe.probe_at_point(pos, raise_after, 0);
   SERIAL_ECHOLNPAIR("start_z = ", start_z*1000);
-
+  
+  /* start continuous measurements */
   for(i = window-2; i >= 0; i--){
     ui.defer_status_screen(true);
     ui.lcd_status_update_delay = 232;
@@ -247,11 +250,11 @@ void GcodeSuite::M998() {
 
 void plot_loop(float value[] = {0}, int counter = -1, float regression = -1){
   /* calculate pixels */
-  // TODO: Die Rechnung braucht unnötig viel CPU-Zyklen
+  // TODO: Calculation is very inefficient
   if(counter >= 0){
     int datapixel[counter+1];
     for(int i = 0; i <= counter; i++){
-      datapixel[i] = 43.0+((value[i]/(20.0/7.0))*(-1.0)); // (20/7) um pro pixel, nullpunkt ist bei y=43
+      datapixel[i] = 43.0+((value[i]/(20.0/7.0))*(-1.0)); // (20/7) um per pixel, zero is at y=43
       if(datapixel[i] < 0){
         datapixel[i] = 0;
       }
@@ -266,7 +269,7 @@ void plot_loop(float value[] = {0}, int counter = -1, float regression = -1){
     do {
       u8g.drawBitmapP( 0, 0, 128/8, 64, plot_backdrop );
       for(int i = 0; i <= counter; i++){
-        u8g.drawPixel(17+i, datapixel[i]);
+        u8g.drawPixel(17+i, datapixel[i]); //TODO: datapixel is currently not tied to an exact time value
         u8g.setFont(u8g_font_micro);
         u8g.setFontPosTop();
         u8g.setPrintPos(41, 58);
@@ -283,8 +286,7 @@ void plot_loop(float value[] = {0}, int counter = -1, float regression = -1){
       u8g.drawBitmapP( 0, 0, 128/8, 64, plot_backdrop );
     } while (u8g.nextPage());
   } //end if
-}
-
+} //end plot_loop
 
 
 
@@ -304,14 +306,11 @@ float calc_regression(float x[], float z[], int length){
   for(int i = 0; i < length-2; i++){
      sum_1 += (z[i]-mean_z)*(x[i]-mean_x);
      sum_2 += (x[i]-mean_x)*(x[i]-mean_x);
-     //SERIAL_ECHOLNPAIR("sum_1>",sum_1,"< += (mov_mean_z[",i,"]>",mov_mean_z[i],"< - mean_z>",mean_z,"<)*(mov_mean_x[",i,"]>",mov_mean_x[i],"< - mean_x>",mean_x,"<)");
   }
   float regression = sum_1/sum_2; //Regression
   sum_1 = 0;
   sum_2 = 0;
   return regression;
-}
-
-
+} //end calc_regression
 
 #endif // HAS_BED_PROBE

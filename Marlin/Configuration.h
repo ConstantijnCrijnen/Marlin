@@ -37,7 +37,7 @@
  */
 #define CONFIGURATION_H_VERSION 02000801
 
-#define HFU_BOT_NUMMER 1 // 1,2,3
+#define HFU_BOT_NUMMER 2 // 1,2,3
 
 //===========================================================================
 //============================= Getting Started =============================
@@ -71,7 +71,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Constantijn Crijnen, Jan 2021)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Constantijn Crijnen, May 2021)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -1869,7 +1869,7 @@
  */
 #define PRINTCOUNTER
 #if ENABLED(PRINTCOUNTER)
-  #define PRINTCOUNTER_SAVE_INTERVAL 60 // (minutes) EEPROM save interval during print
+  #define PRINTCOUNTER_SAVE_INTERVAL 0 // (minutes) EEPROM save interval during print
 #endif
 
 /**
